@@ -1,0 +1,20 @@
+
+.panel-primary {
+  margin-top: 10px;
+  border-color: #112446;
+}
+
+.panel-primary>.panel-heading {
+  color: #fff;
+  background-color: #112446;
+  border-color: #112446;
+}
+
+.alert {
+  padding: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+a.disabled {
+  pointer-events: none;
+}

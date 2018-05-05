@@ -15,7 +15,9 @@ Imports:
     DBI,
     RSQLite,
     shiny,
-    shinyWidgets
+    shinyWidgets,
+    miniUI,
+    rstudioapi
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
