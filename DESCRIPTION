@@ -1,0 +1,20 @@
+Package: sqlquery
+Version: 0.0.0.9000
+Title: SQL query editor
+Description: Create SQL queries.
+Authors@R: c(
+    person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
+    person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
+    person("Marijn", "Haverbeke", role = c("cph"), comment = "CodeMirror library"),
+    person("Zeno", "Rocha", role = c("cph"), comment = "clipboard.js")
+  )
+License: GPL-3 | file LICENSE
+Imports:
+    htmlwidgets,
+    htmltools,
+    DBI,
+    RSQLite
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+RoxygenNote: 6.0.1
