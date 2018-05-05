@@ -18,5 +18,4 @@ sql_query(value = "SELECT * FROM mtcars", raw = TRUE)
 con <- dbConnect(RSQLite::SQLite(), ":memory:")
 dbWriteTable(conn = con, name = "mtcars", value = mtcars)
 
-sql_query(conn = con, value = "")
-
+sql_query(conn = con)

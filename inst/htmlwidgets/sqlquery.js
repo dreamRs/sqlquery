@@ -14,6 +14,8 @@ HTMLWidgets.widget({
 
         // Styling
         var element = document.getElementById(el.id);
+        var widthEl = element.clientWidth;
+        var heightEl = element.clientHeight;
         var editorId = el.id + "-editor";
         var editor = document.createElement('textarea');
         editor.id = editorId;
@@ -42,6 +44,7 @@ HTMLWidgets.widget({
           var keys = document.createElement('span');
           keys.style.fontStyle = "italic";
           keys.style.fontSize = "12px";
+          keys.style.marginLeft = "10px";
           keys.innerHTML = "Press Ctrl-Space for autocomplete";
           element.appendChild(keys);
 
@@ -54,6 +57,7 @@ HTMLWidgets.widget({
           btnCopy.classList.add('btn');
           btnCopy.classList.add('btn-default');
           btnCopy.classList.add('clip-btn-native');
+          btnCopy.style.marginLeft = "10px";
           btnIcon = document.createElement('span');
           btnIcon.classList.add('glyphicon');
           btnIcon.classList.add('glyphicon-copy');
@@ -68,6 +72,7 @@ HTMLWidgets.widget({
         var params = x.options;
         params.extraKeys = {"Ctrl-Space": "autocomplete"};
         params.hintOptions = x.autocomplete;
+
 
         // Set font size
         document.getElementById(el.id).style.fontSize = x.fontSize;
@@ -92,6 +97,8 @@ HTMLWidgets.widget({
                   return getCodeMirrorNative(editorSelector).getDoc().getValue();
               }
           });
+        } else {
+          SQLCodeMirror.setSize(widthEl, heightEl);
         }
 
       },

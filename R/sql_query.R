@@ -18,6 +18,20 @@
 #' @importFrom utils modifyList
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' # Launch default editor
+#' sql_query(value = "SELECT * FROM mtcars")
+#'
+#' # Use a connection
+#' con <- dbConnect(RSQLite::SQLite(), ":memory:")
+#' dbWriteTable(conn = con, name = "mtcars", value = mtcars)
+#'
+#' sql_query(conn = con)
+#'
+#' }
 sql_query <- function(conn = NULL, schema = NULL, autocomplete = NULL,
                       value = NULL,
                       options = editor_options(),
@@ -66,6 +80,14 @@ sql_query <- function(conn = NULL, schema = NULL, autocomplete = NULL,
     height = height,
     package = 'sqlquery',
     elementId = elementId,
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      defaultWidth = "100%",
+      viewer.defaultHeight = "100%",
+      viewer.defaultWidth = "100%",
+      knitr.figure = FALSE,
+      browser.fill = TRUE,
+      padding = 0
+    ),
     dependencies = c(depsBS, depsTheme)
   )
 }
@@ -136,8 +158,50 @@ codemirror_theme_dep <- function(theme) {
 #'
 #' @name sqlquery-shiny
 #'
+#' @note You can retrieve editor's value server-side with \code{input$<outputId>_value}.
+#'
 #' @export
 #' @importFrom htmlwidgets shinyWidgetOutput
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#' library(shiny)
+#' library(shinyWidgets)
+#' library(sqlquery)
+#'
+#' ui <- fluidPage(
+#'   tags$h2("sqlquery example"),
+#'   panel(
+#'     heading = "SQL editor",
+#'     status = "primary",
+#'     sqlqueryOutput(outputId = "mySQL", height = "200px")
+#'   ),
+#'   verbatimTextOutput(outputId = "res")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$mySQL <- renderSqlquery({
+#'     sql_query(raw = TRUE)
+#'   })
+#'
+#'   output$res <- renderPrint({
+#'     input$mySQL_value
+#'   })
+#'
+#' }
+#'
+#' runApp(
+#'   appDir = shinyApp(ui, server),
+#'   launch.browser = paneViewer()
+#' )
+#'
+#' }
+#'
+#' }
 sqlqueryOutput <- function(outputId, width = '100%', height = '400px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'sqlquery', width, height, package = 'sqlquery')
 }

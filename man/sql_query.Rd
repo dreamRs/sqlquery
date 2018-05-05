@@ -34,3 +34,17 @@ List's names represent tables, values tables' fields.}
 \description{
 Create a SQL Query editor
 }
+\examples{
+\dontrun{
+
+# Launch default editor
+sql_query(value = "SELECT * FROM mtcars")
+
+# Use a connection
+con <- dbConnect(RSQLite::SQLite(), ":memory:")
+dbWriteTable(conn = con, name = "mtcars", value = mtcars)
+
+sql_query(conn = con)
+
+}
+}

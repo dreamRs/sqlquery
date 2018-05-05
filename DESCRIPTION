@@ -13,7 +13,9 @@ Imports:
     htmlwidgets,
     htmltools,
     DBI,
-    RSQLite
+    RSQLite,
+    shiny,
+    shinyWidgets
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true

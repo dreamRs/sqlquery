@@ -1,16 +1,22 @@
 
 library(shiny)
+library(shinyWidgets)
+library(sqlquery)
 
 ui <- fluidPage(
   tags$h2("sqlquery example"),
-  sqlqueryOutput(outputId = "mySQL", height = "300px"),
+  panel(
+    heading = "SQL editor",
+    status = "primary",
+    sqlqueryOutput(outputId = "mySQL", height = "200px")
+  ),
   verbatimTextOutput(outputId = "res")
 )
 
 server <- function(input, output, session) {
 
   output$mySQL <- renderSqlquery({
-    sql_query(font_size = "16px", raw = TRUE)
+    sql_query(raw = TRUE)
   })
 
   output$res <- renderPrint({
@@ -19,4 +25,7 @@ server <- function(input, output, session) {
 
 }
 
-runApp(shinyApp(ui, server), launch.browser = paneViewer())
+runApp(
+  appDir = shinyApp(ui, server),
+  launch.browser = paneViewer()
+)
