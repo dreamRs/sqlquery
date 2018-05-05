@@ -30,7 +30,11 @@ HTMLWidgets.widget({
           title.style.lineHeight = "40px";
           title.style.textAlign = "center";
           title.style.fontFamily = 'font-family: Georgia, "Times New Roman", Times, serif;';
-          title.innerHTML = "SQL Query Editor";
+          titleIcon = document.createElement('span');
+          titleIcon.classList.add('glyphicon');
+          titleIcon.classList.add('glyphicon-console');
+          title.appendChild(titleIcon);
+          title.innerHTML += "&nbsp;SQL Query Editor";
           element.appendChild(title);
 
           element.appendChild(editor);

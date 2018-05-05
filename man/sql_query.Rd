@@ -4,7 +4,7 @@
 \alias{sql_query}
 \title{Create a SQL Query editor}
 \usage{
-sql_query(conn = NULL, schema = NULL, autocomplete = NULL, value = "",
+sql_query(conn = NULL, schema = NULL, autocomplete = NULL, value = NULL,
   options = editor_options(), font_size = "16px", raw = FALSE,
   width = NULL, height = NULL, elementId = NULL)
 }

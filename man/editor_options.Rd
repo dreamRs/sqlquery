@@ -5,7 +5,8 @@
 \title{Options for code editor}
 \usage{
 editor_options(lineNumbers = TRUE, lineWrapping = TRUE, tabSize = 4,
-  indentWithTabs = TRUE, smartIndent = TRUE, autofocus = TRUE, ...)
+  indentWithTabs = TRUE, smartIndent = TRUE, autofocus = TRUE,
+  theme = "eclipse", ...)
 }
 \arguments{
 \item{lineNumbers}{Logical. Whether to show line numbers to the left of the editor.}
@@ -21,6 +22,8 @@ the first N*\code{tabSize} spaces should be replaced by N tabs.}
 that the mode provides (or just indent the same as the line before).}
 
 \item{autofocus}{Can be used to make editor focus itself on initialization.}
+
+\item{theme}{The theme to style the editor with. See \url{https://codemirror.net/demo/theme.html}.}
 
 \item{...}{Additional parameters, see \url{http://codemirror.net/doc/manual.html#config}.}
 }

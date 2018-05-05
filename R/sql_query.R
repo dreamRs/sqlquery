@@ -19,12 +19,10 @@
 #'
 #' @export
 sql_query <- function(conn = NULL, schema = NULL, autocomplete = NULL,
-                      value = "",
+                      value = NULL,
                       options = editor_options(),
                       font_size = "16px", raw = FALSE,
                       width = NULL, height = NULL, elementId = NULL) {
-
-  stopifnot(is.character(value))
 
   # Connection infos
   db_infos <- get_db_infos(conn = conn, schema = schema)
@@ -41,6 +39,12 @@ sql_query <- function(conn = NULL, schema = NULL, autocomplete = NULL,
     val = options
   )
 
+  if (!is.null(options$theme)) {
+    depsTheme <- codemirror_theme_dep(options$theme)
+  } else {
+    depsTheme <- NULL
+  }
+
   # htmlwidgets parameters
   x <- list(
     options = options, raw = raw,
@@ -49,9 +53,9 @@ sql_query <- function(conn = NULL, schema = NULL, autocomplete = NULL,
   )
 
   if (!raw) {
-    deps <- bs_light_dep()
+    depsBS <- bs_light_dep()
   } else {
-    deps <- NULL
+    depsBS <- NULL
   }
 
   # create widget
@@ -62,18 +66,30 @@ sql_query <- function(conn = NULL, schema = NULL, autocomplete = NULL,
     height = height,
     package = 'sqlquery',
     elementId = elementId,
-    dependencies = deps
+    dependencies = c(depsBS, depsTheme)
   )
 }
 
 #' @importFrom htmltools htmlDependency
 bs_light_dep <- function(){
-  htmlDependency(
-    name = "bootstrap", version = "3.3.7",
-    src = system.file("htmlwidgets", "lib", "bootstrap-light", package = "sqlquery"),
-    meta = list(viewport = "width=device-width, initial-scale=1"),
-    script = NULL,
-    stylesheet = c("css/bootstrap.min.css", "css/bootstrap-theme.min.css")
+  list(
+    htmlDependency(
+      name = "bootstrap", version = "3.3.7",
+      src = system.file("htmlwidgets", "lib", "bootstrap-light", package = "sqlquery"),
+      meta = list(viewport = "width=device-width, initial-scale=1"),
+      script = NULL,
+      stylesheet = c("css/bootstrap.min.css", "css/bootstrap-theme.min.css")
+    )
+  )
+}
+
+codemirror_theme_dep <- function(theme) {
+  list(
+    htmlDependency(
+      name = "codemirror-theme", version = "5.37.0",
+      src = system.file("htmlwidgets", "lib", "codemirror-5.37.0", "theme", package = "sqlquery"),
+      stylesheet = paste0(theme, ".css")
+    )
   )
 }
 
