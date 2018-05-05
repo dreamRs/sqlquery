@@ -7,7 +7,8 @@ con <- dbConnect(RSQLite::SQLite(), "dev/test.sqlite")
 # Init
 if (FALSE) {
   dbWriteTable(conn = con, name = "mtcars", value = mtcars)
-  dbWriteTable(conn = con, name = "iris", value = iris)
+  data("diamonds", package = "ggplot2")
+  dbWriteTable(conn = con, name = "diamonds", value = as.data.frame(diamonds))
   # dbDisconnect(con)
 }
 

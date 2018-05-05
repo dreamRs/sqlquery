@@ -4,6 +4,8 @@ library(sqlquery)
 library(DBI)
 
 
+# htmlwidget ----
+
 # Default
 sql_query(value = "SELECT * FROM mtcars")
 
@@ -19,3 +21,26 @@ con <- dbConnect(RSQLite::SQLite(), ":memory:")
 dbWriteTable(conn = con, name = "mtcars", value = mtcars)
 
 sql_query(conn = con)
+
+
+
+
+
+# addin ----
+
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), "dev/test.sqlite")
+sql_query_addin(conn = con)
+
+# options("sqlquery.connection" = function() {
+#   dbConnect(RSQLite::SQLite(), "dev/test.sqlite")
+# })
+
+
+
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), "dev/test.sqlite")
+options("sqlquery.display.mode" = "dialog")
+sql_query_addin(conn = con)
+
+

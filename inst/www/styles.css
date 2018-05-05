@@ -18,3 +18,8 @@
 a.disabled {
   pointer-events: none;
 }
+
+thead {
+  background-color: #112446;
+  color: #FFF;
+}

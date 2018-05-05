@@ -45,6 +45,7 @@ sql_query_addin <- function(conn = NULL, schema = NULL) {
 
   sqlquery.env$conn <- conn
   sqlquery.env$db_infos <- db_infos
+  sqlquery.env$pane <- display == "pane"
 
   runGadget(
     app = sql_query_addin_ui(),
