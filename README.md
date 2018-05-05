@@ -2,6 +2,11 @@
 
 > SQL query editor
 
+[![Travis build status](https://travis-ci.org/dreamRs/sqlquery.svg?branch=master)](https://travis-ci.org/dreamRs/sqlquery)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
+ 
+
 ## Installation
 
 You can install from Github:
