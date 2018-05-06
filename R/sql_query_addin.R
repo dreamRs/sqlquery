@@ -23,10 +23,12 @@
 sql_query_addin <- function(conn = NULL, schema = NULL) {
 
   conn_fun <- getOption("sqlquery.connection")
-  if (!is.null(conn_fun) & is.function(conn_fun)) {
+  if (is.null(conn) & !is.null(conn_fun) & is.function(conn_fun)) {
     conn <- conn_fun()
   }
-  schema <- getOption("sqlquery.schema", default = schema)
+  if (is.null(schema)) {
+    schema <- getOption("sqlquery.schema")
+  }
 
   db_infos <- get_db_infos(conn = conn, schema = schema)
 

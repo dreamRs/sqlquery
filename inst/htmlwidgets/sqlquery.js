@@ -6,7 +6,7 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    // TODO: define shared variables for this instance
+    var SQLCodeMirror;
 
     return {
 
@@ -77,7 +77,7 @@ HTMLWidgets.widget({
         // Set font size
         document.getElementById(el.id).style.fontSize = x.fontSize;
         // Initialize editor
-        var SQLCodeMirror = CodeMirror.fromTextArea(document.getElementById(editorId), params);
+        SQLCodeMirror = CodeMirror.fromTextArea(document.getElementById(editorId), params);
 
         // Shiny interaction
         if (HTMLWidgets.shinyMode) {
@@ -101,6 +101,10 @@ HTMLWidgets.widget({
           SQLCodeMirror.setSize(widthEl, heightEl);
         }
 
+      },
+
+      getEditor: function() {
+        return SQLCodeMirror;
       },
 
       resize: function(width, height) {
@@ -137,3 +141,39 @@ function getCodeMirrorNative(target) {
 }
 
 
+
+// PROXY
+
+function get_editor(id){
+  var htmlWidgetsObj = HTMLWidgets.find("#" + id);
+  var editorObj ;
+  if (typeof htmlWidgetsObj != 'undefined') {
+    editorObj = htmlWidgetsObj.getEditor();
+  }
+  return(editorObj);
+}
+
+
+if (HTMLWidgets.shinyMode) {
+
+  // setValue
+  Shiny.addCustomMessageHandler('sqlquery-setvalue',
+    function(data) {
+      var editor = get_editor(data.id);
+      if (typeof editor != 'undefined') {
+        editor.setValue(data.value);
+      }
+  });
+
+  // copy to clipboard
+  Shiny.addCustomMessageHandler('sqlquery-clipboard',
+    function(data) {
+      new ClipboardJS(data.selector, {
+          text: function(trigger) {
+            var editor = get_editor(data.id);
+            return editor.getValue();
+          }
+      });
+  });
+
+}

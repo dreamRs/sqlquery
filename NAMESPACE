@@ -3,6 +3,8 @@
 export(editor_options)
 export(get_db_infos)
 export(renderSqlquery)
+export(sq_proxy_clipboard)
+export(sq_proxy_setvalue)
 export(sql_query)
 export(sql_query_addin)
 export(sqlqueryOutput)

@@ -3,6 +3,9 @@
   margin-top: 10px;
   border-color: #112446;
 }
+.panel-body {
+  height: 100%;
+}
 
 .panel-primary>.panel-heading {
   color: #fff;
