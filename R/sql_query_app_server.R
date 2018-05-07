@@ -4,7 +4,7 @@
 #' @importFrom DBI dbSendQuery
 #' @importFrom utils View
 #' @importFrom rstudioapi getActiveDocumentContext insertText
-sql_query_addin_server <- function(input, output, session) {
+sql_query_app_server <- function(input, output, session) {
 
   if (is.null(sqlquery.env$conn)) {
     insertUI(
@@ -15,6 +15,14 @@ sql_query_addin_server <- function(input, output, session) {
       )
     )
     toggleInputServer(session, "run_query", enable = FALSE)
+  } else {
+    insertUI(
+      selector = "#result-query",
+      ui = alert(
+        "Click button above to run the query",
+        status = "info", id = "alert-query"
+      )
+    )
   }
 
   # Editor

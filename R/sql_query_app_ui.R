@@ -2,7 +2,7 @@
 #' @importFrom miniUI miniPage miniContentPanel
 #' @importFrom shiny tags tagList fillPage fillCol fillRow actionLink icon
 #' @importFrom shinyWidgets panel
-sql_query_addin_ui <- function() {
+sql_query_app_ui <- function() {
   miniPage(
     tags$head(
       tags$link(href="sqlquery/styles.css", rel="stylesheet", type="text/css")

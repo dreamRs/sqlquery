@@ -15,12 +15,12 @@
 #'
 #' if (interactive()) {
 #'
-#' sql_query_addin()
+#' sql_query_app()
 #'
 #' }
 #'
 #' }
-sql_query_addin <- function(conn = NULL, schema = NULL) {
+sql_query_app <- function(conn = NULL, schema = NULL) {
 
   conn_fun <- getOption("sqlquery.connection")
   if (is.null(conn) & !is.null(conn_fun) & is.function(conn_fun)) {
@@ -50,8 +50,8 @@ sql_query_addin <- function(conn = NULL, schema = NULL) {
   sqlquery.env$pane <- display == "pane"
 
   runGadget(
-    app = sql_query_addin_ui(),
-    server = sql_query_addin_server,
+    app = sql_query_app_ui(),
+    server = sql_query_app_server,
     viewer = inviewer
   )
 }
