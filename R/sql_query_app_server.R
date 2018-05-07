@@ -60,8 +60,8 @@ sql_query_app_server <- function(input, output, session) {
           tags$b("Success!"), "Click to view first rows",
           actionLink(
             inputId = "see_result",
-            label = "See results",
-            icon = icon("table")
+            label = "",
+            icon = icon("table", class = "fa-2x icon-middle")
           ),
           status = "success", id = "alert-query"
         )

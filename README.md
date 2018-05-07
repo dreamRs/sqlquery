@@ -23,7 +23,7 @@ You can install from Github:
 source("https://install-github.me/dreamRs/sqlquery")
 ```
 
-## htmlwidget
+## Htmlwidget
 
 Basic usage:
 
@@ -43,7 +43,7 @@ sql_query(conn = con)
 ![](img/htmlwidget.png)
 
 
-## shiny app
+## Shiny app
 
 Basic usage:
 
@@ -73,5 +73,23 @@ options("sqlquery.display.mode" = "dialog")
 ```
 
 
+## Addins
 
+You can launch addins via RStudio addins menu. If you want to use a connection with addins, you can set option `sqlquery.connection` in your `.Rprofile` : 
+
+```r
+options("sqlquery.connection" = function() {
+  con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+  DBI::dbWriteTable(conn = con, name = "mtcars", value = mtcars)
+  return(con)
+})
+```
+
+This has to be a function returning a connection.
+
+If you want to use a default schema, use: 
+
+```r
+options("sqlquery.schema" = "myschema")
+```
 

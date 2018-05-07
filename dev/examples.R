@@ -48,7 +48,7 @@ con <- dbConnect(RSQLite::SQLite(), "dev/test.sqlite")
 # options("sqlquery.display.mode" = "pane")
 sql_query_app(conn = con)
 
-query <- "SELECT * FROM mtcars WHERE mtcars.disp == '4'"
+query <- ""
 rs <- dbSendQuery(conn = con, statement = query)
 dbFetch(res = rs, n = 50)
 View(dbFetch(res = rs, n = 50))
