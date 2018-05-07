@@ -71,8 +71,9 @@ HTMLWidgets.widget({
 
         var params = x.options;
         params.extraKeys = {"Ctrl-Space": "autocomplete"};
+        params.hint = CodeMirror.hint.sql;
         params.hintOptions = x.autocomplete;
-
+        console.log(x.autocomplete);
 
         // Set font size
         document.getElementById(el.id).style.fontSize = x.fontSize;

@@ -6,6 +6,9 @@
 #' @param conn A \code{DBIConnection} object, as returned by \code{dbConnect()}.
 #' @param schema Schema's name, by default \code{NULL}.
 #'
+#' @note You can choose where application is displayed by setting option \code{sqlquery.display.mode},
+#' default value is \code{"pane"}, other choices are \code{"browser"} or \code{"dialog"}.
+#'
 #' @export
 #'
 #' @importFrom shiny dialogViewer browserViewer runGadget paneViewer

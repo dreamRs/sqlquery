@@ -45,7 +45,7 @@ sql_query_app(conn = con)
 
 library(DBI)
 con <- dbConnect(RSQLite::SQLite(), "dev/test.sqlite")
-options("sqlquery.display.mode" = "pane")
+# options("sqlquery.display.mode" = "pane")
 sql_query_app(conn = con)
 
 query <- "SELECT * FROM mtcars WHERE mtcars.disp == '4'"

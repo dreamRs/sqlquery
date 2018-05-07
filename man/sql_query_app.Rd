@@ -14,6 +14,10 @@ sql_query_app(conn = NULL, schema = NULL)
 \description{
 Write SQL queries and execute them.
 }
+\note{
+You can choose where application is displayed by setting option \code{sqlquery.display.mode},
+default value is \code{"pane"}, other choices are \code{"browser"} or \code{"dialog"}.
+}
 \examples{
 \dontrun{
 
