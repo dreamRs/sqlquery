@@ -22,14 +22,6 @@
 #' }
 sql_query_app <- function(conn = NULL, schema = NULL) {
 
-  conn_fun <- getOption("sqlquery.connection")
-  if (is.null(conn) & !is.null(conn_fun) & is.function(conn_fun)) {
-    conn <- conn_fun()
-  }
-  if (is.null(schema)) {
-    schema <- getOption("sqlquery.schema")
-  }
-
   db_infos <- get_db_infos(conn = conn, schema = schema)
 
   display <- getOption("sqlquery.display.mode", default = "pane")

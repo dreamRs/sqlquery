@@ -1,0 +1,9 @@
+Name: SQL query (non interactive mode)
+Description: Write SQL queries in the viewer.
+Binding: sq_addin
+Interactive: true
+
+Name: SQL query (interactive mode)
+Description: Write & execute SQL queries in the viewer.
+Binding: sq_addin_app
+Interactive: true
