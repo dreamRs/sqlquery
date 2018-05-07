@@ -3,6 +3,7 @@
 #'  renderTable HTML showModal modalDialog modalButton
 #' @importFrom DBI dbSendQuery
 #' @importFrom utils View
+#' @importFrom rstudioapi getActiveDocumentContext insertText
 sql_query_addin_server <- function(input, output, session) {
 
   if (is.null(sqlquery.env$conn)) {
@@ -16,9 +17,21 @@ sql_query_addin_server <- function(input, output, session) {
     toggleInputServer(session, "run_query", enable = FALSE)
   }
 
+  # Editor
   output$SQLquery <- renderSqlquery({
     sql_query(raw = TRUE, autocomplete = sqlquery.env$db_infos)
   })
+
+  # Btn copy to clipboard
+  sq_proxy_clipboard("SQLquery", selector = "#copy_to_clipboard")
+  # Btn insert script
+  shiny::observeEvent(input$insert_code, {
+    context <- rstudioapi::getActiveDocumentContext()
+    code <- input$SQLquery_value
+    code <- paste0("query <- \"", code, "\"")
+    rstudioapi::insertText(text = code, id = context$id)
+  })
+
 
   observeEvent(input$run_query, {
     rs <- try(dbSendQuery(conn = sqlquery.env$conn, statement = input$SQLquery_value), silent = TRUE)
@@ -51,7 +64,7 @@ sql_query_addin_server <- function(input, output, session) {
   observeEvent(input$see_result, {
     res <- fetch_rows(sqlquery.env$conn, input$SQLquery_value)
     if (sqlquery.env$pane) {
-      View(res, title = "sqlquery")
+      .View(res, title = "sqlquery")
     } else {
       showModal(modalDialog(
         title = "First 50 rows",
@@ -77,5 +90,10 @@ error_msg <- function(x) {
   x <-  as.character(x)
   x <- gsub(pattern = ".*\\s:\\s", replacement = "", x = x)
   trimws(x)
+}
+
+# https://stackoverflow.com/questions/48234850/how-to-use-r-studio-view-function-programatically-in-a-package
+.View <- function(x, title) {
+  get("View", envir = as.environment("package:utils"))(x, title)
 }
 
