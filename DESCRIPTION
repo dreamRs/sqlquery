@@ -1,5 +1,5 @@
 Package: sqlquery
-Version: 0.0.0.9100
+Version: 0.0.1
 Title: SQL query editor
 Description: Create SQL queries.
 Authors@R: c(

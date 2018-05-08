@@ -10,6 +10,7 @@ sql_query_app_server <- function(input, output, session) {
     insertUI(
       selector = "#result-query",
       ui = alert(
+        icon("exclamation-triangle"),
         tags$b("No connection"), "Define a connection to run queries",
         status = "warning", id = "alert-query"
       )
@@ -19,7 +20,7 @@ sql_query_app_server <- function(input, output, session) {
     insertUI(
       selector = "#result-query",
       ui = alert(
-        "Click button above to run the query",
+        icon("info-circle"), "Click button above to run the query",
         status = "info", id = "alert-query"
       )
     )
@@ -48,6 +49,7 @@ sql_query_app_server <- function(input, output, session) {
       insertUI(
         selector = "#result-query",
         ui = alert(
+          icon("exclamation-circle"),
           tags$b("Error"), error_msg(rs),
           status = "danger", id = "alert-query"
         )
@@ -57,7 +59,9 @@ sql_query_app_server <- function(input, output, session) {
       insertUI(
         selector = "#result-query",
         ui = alert(
-          tags$b("Success!"), "Click to view first rows",
+          icon("check-circle"),
+          tags$b("Success!"), "Click to view first rows ",
+          icon("hand-o-right"), HTML("&nbsp;"),
           actionLink(
             inputId = "see_result",
             label = "",
