@@ -3,16 +3,16 @@ dependencies:
     version: 5.37.0
     src:  htmlwidgets/lib/codemirror-5.37.0
     script:
-      - lib/codemirror.js
-      - mode/sql/sql.js
-    stylesheet: lib/codemirror.css
+      - lib/codemirror.min.js
+      - mode/sql/sql.min.js
+    stylesheet: lib/codemirror.min.css
   - name: addon
     version: 5.37.0
     src:  htmlwidgets/lib/codemirror-5.37.0/addon
     script:
-      - hint/show-hint.js
-      - hint/sql-hint.js
-    stylesheet: hint/show-hint.css
+      - hint/show-hint.min.js
+      - hint/sql-hint.min.js
+    stylesheet: hint/show-hint.min.css
   - name: clipboard
     version: 2.0.0
     src:  htmlwidgets/lib/clipboard-2.0.0
